@@ -2,6 +2,7 @@ import {Suspense} from 'react';
 import {Await, NavLink, useAsyncValue} from '@remix-run/react';
 import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
+import NestedMenuList from './NestedMenuList';
 
 /**
  * @param {HeaderProps}
@@ -54,30 +55,39 @@ export function HeaderMenu({
           Home
         </NavLink>
       )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
-        if (!item.url) return null;
+      {viewport === 'mobile' && (
+        <NestedMenuList
+          menu={menu.items}
+          primaryDomainUrl
+          viewport
+          publicStoreDomain
+        />
+      )}
+      {viewport === 'desktop' &&
+        (menu || FALLBACK_HEADER_MENU).items.map((item) => {
+          if (!item.url) return null;
 
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        return (
-          <NavLink
-            className="header-menu-item"
-            end
-            key={item.id}
-            onClick={close}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
+          // if the url is internal, we strip the domain
+          const url =
+            item.url.includes('myshopify.com') ||
+            item.url.includes(publicStoreDomain) ||
+            item.url.includes(primaryDomainUrl)
+              ? new URL(item.url).pathname
+              : item.url;
+          return (
+            <NavLink
+              className="header-menu-item"
+              end
+              key={item.id}
+              onClick={close}
+              prefetch="intent"
+              style={activeLinkStyle}
+              to={url}
+            >
+              {item.title}
+            </NavLink>
+          );
+        })}
     </nav>
   );
 }
@@ -186,7 +196,7 @@ const FALLBACK_HEADER_MENU = {
       tags: [],
       title: 'Blog',
       type: 'HTTP',
-      url: '/blogs/journal',
+      url: '/blogs/blog',
       items: [],
     },
     {
@@ -204,7 +214,7 @@ const FALLBACK_HEADER_MENU = {
       tags: [],
       title: 'About',
       type: 'PAGE',
-      url: '/pages/about',
+      url: '/pages/about-us',
       items: [],
     },
   ],

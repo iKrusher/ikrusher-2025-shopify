@@ -26,6 +26,7 @@ export default defineConfig({
     assetsInlineLimit: 0,
   },
   ssr: {
+    // noExternal: ['antd'],
     optimizeDeps: {
       /**
        * Include dependencies here if they throw CJS<>ESM errors.
@@ -37,7 +38,7 @@ export default defineConfig({
        * Include 'example-dep' in the array below.
        * @see https://vitejs.dev/config/dep-optimization-options
        */
-      include: [],
+      include: ['antd'],
     },
   },
 });
