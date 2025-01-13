@@ -1,5 +1,6 @@
 import {createContext, useContext, useEffect, useState} from 'react';
-import {LogIn, SearchToggle} from './Header';
+import {LogIn, SearchToggle, Wishlist} from './Header';
+import logo from '~/assets/logo.svg';
 
 /**
  * A side bar component with Overlay
@@ -50,16 +51,19 @@ export function Aside({children, heading, type}) {
         <header>
           <h3>
             {heading.toLowerCase() === 'menu' ? (
-              <a href="/">iKrusher</a>
+              <a href="/">
+                <img src={logo} alt="iKrusher logo" />
+              </a>
             ) : (
               heading
             )}
           </h3>
           <div className="aside-right">
             {heading.toLowerCase() === 'menu' && (
-              <div>
+              <div className="aside-right-icons">
                 <LogIn />
                 <SearchToggle />
+                <Wishlist />
               </div>
             )}
             <button className="close reset" onClick={close} aria-label="Close">

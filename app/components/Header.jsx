@@ -3,17 +3,22 @@ import {Await, NavLink, useAsyncValue} from '@remix-run/react';
 import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
 import NestedMenuList from './NestedMenuList';
+import loginIcon from '~/assets/login-icon.svg';
+import wishlistIcon from '~/assets/wishlist-icon.svg';
+import searchIcon from '~/assets/search-icon.svg';
+import hamburgerIcon from '~/assets/hamburger.svg';
+import logo from '~/assets/logo.svg';
 
 /**
  * @param {HeaderProps}
  */
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
-  const {shop, menu} = header;
+  const {menu} = header;
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
+      <a href="/">
+        <img src={logo} alt="iKrusher logo" />
+      </a>
       <HeaderMenu
         menu={menu}
         viewport="desktop"
@@ -98,10 +103,10 @@ export function HeaderMenu({
  */
 export function LogIn({isLoggedIn}) {
   return (
-    <NavLink prefetch="intent" to="/account/login" style={activeLinkStyle}>
+    <NavLink prefetch="intent" to="/account/login">
       <Suspense fallback="Sign in">
         <Await resolve={isLoggedIn} errorElement="Sign in">
-          {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
+          <img src={loginIcon} alt="iKrusher login" />
         </Await>
       </Suspense>
     </NavLink>
@@ -119,8 +124,17 @@ function HeaderCtas({isLoggedIn, cart, viewport}) {
         <LogIn />
         <SearchToggle />
         {/* <CartToggle cart={cart} /> */}
+        {Wishlist}
       </div>
     </nav>
+  );
+}
+
+export function Wishlist() {
+  return (
+    <a href="/pages/wishlist">
+      <img src={wishlistIcon} alt="iKrusher wishlist" />
+    </a>
   );
 }
 
@@ -131,7 +145,9 @@ function HeaderMenuMobileToggle() {
       className="header-menu-mobile-toggle reset"
       onClick={() => open('mobile')}
     >
-      <h3>☰</h3>
+      <h3>
+        <img src={hamburgerIcon} alt="iKrusher icon" />
+      </h3>
     </button>
   );
 }
@@ -140,7 +156,7 @@ export function SearchToggle() {
   const {open} = useAside();
   return (
     <button className="reset" onClick={() => open('search')}>
-      Search
+      <img src={searchIcon} alt="iKrusher search" />
     </button>
   );
 }
