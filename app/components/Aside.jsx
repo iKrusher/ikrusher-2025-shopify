@@ -1,4 +1,5 @@
 import {createContext, useContext, useEffect, useState} from 'react';
+import {LogIn, SearchToggle} from './Header';
 
 /**
  * A side bar component with Overlay
@@ -39,16 +40,32 @@ export function Aside({children, heading, type}) {
   return (
     <div
       aria-modal
-      className={`overlay ${expanded ? 'expanded' : ''}`}
+      className={`overlay ${heading.toLowerCase()}-${type} ${
+        expanded ? 'expanded' : ''
+      }`}
       role="dialog"
     >
       <button className="close-outside" onClick={close} />
       <aside>
         <header>
-          <h3>{heading}</h3>
-          <button className="close reset" onClick={close} aria-label="Close">
-            &times;
-          </button>
+          <h3>
+            {heading.toLowerCase() === 'menu' ? (
+              <a href="/">iKrusher</a>
+            ) : (
+              heading
+            )}
+          </h3>
+          <div className="aside-right">
+            {heading.toLowerCase() === 'menu' && (
+              <div>
+                <LogIn />
+                <SearchToggle />
+              </div>
+            )}
+            <button className="close reset" onClick={close} aria-label="Close">
+              &times;
+            </button>
+          </div>
         </header>
         <main>{children}</main>
       </aside>

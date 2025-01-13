@@ -39,13 +39,19 @@ export default function NestedMenuList({
     return result;
   });
 
-  return <Menu mode="inline" items={items} />;
+  return (
+    <Menu
+      mode="inline"
+      items={items}
+      style={{borderInlineEnd: 'none', background: 'transparent'}}
+    />
+  );
 }
 
 const FALLBACK_HEADER_MENU = [
   {
     key: 'gid://shopify/MenuItem/461609500728',
-    label: <a href="/collections">Collections</a>,
+    label: <a href="/collections/all-products">Products</a>,
   },
   {
     key: 'gid://shopify/MenuItem/461609533496',

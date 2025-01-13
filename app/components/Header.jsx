@@ -32,6 +32,7 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
  *   viewport: Viewport;
  *   publicStoreDomain: HeaderProps['publicStoreDomain'];
  * }}
+ * @param {HeaderProps}
  */
 export function HeaderMenu({
   menu,
@@ -44,7 +45,7 @@ export function HeaderMenu({
 
   return (
     <nav className={className} role="navigation">
-      {viewport === 'mobile' && (
+      {/* {viewport === 'mobile' && (
         <NavLink
           end
           onClick={close}
@@ -52,9 +53,9 @@ export function HeaderMenu({
           style={activeLinkStyle}
           to="/"
         >
-          Home
+          iKrusher
         </NavLink>
-      )}
+      )} */}
       {viewport === 'mobile' && (
         <NestedMenuList
           menu={menu.items}
@@ -95,19 +96,30 @@ export function HeaderMenu({
 /**
  * @param {Pick<HeaderProps, 'isLoggedIn' | 'cart'>}
  */
-function HeaderCtas({isLoggedIn, cart}) {
+export function LogIn({isLoggedIn}) {
+  return (
+    <NavLink prefetch="intent" to="/account/login" style={activeLinkStyle}>
+      <Suspense fallback="Sign in">
+        <Await resolve={isLoggedIn} errorElement="Sign in">
+          {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
+        </Await>
+      </Suspense>
+    </NavLink>
+  );
+}
+
+/**
+ * @param {Pick<HeaderProps, 'isLoggedIn' | 'cart'>}
+ */
+function HeaderCtas({isLoggedIn, cart, viewport}) {
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
-          </Await>
-        </Suspense>
-      </NavLink>
-      <SearchToggle />
-      <CartToggle cart={cart} />
+      <div className="desktop-login-search">
+        <LogIn />
+        <SearchToggle />
+        {/* <CartToggle cart={cart} /> */}
+      </div>
     </nav>
   );
 }
@@ -124,7 +136,7 @@ function HeaderMenuMobileToggle() {
   );
 }
 
-function SearchToggle() {
+export function SearchToggle() {
   const {open} = useAside();
   return (
     <button className="reset" onClick={() => open('search')}>
