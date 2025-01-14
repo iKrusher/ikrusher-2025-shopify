@@ -1,4 +1,4 @@
-@import url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro');
+@import url('/app/assets/fonts.css');
 
 *, html, body {
   font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
@@ -52,7 +52,8 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color: var(--theme-color);
   cursor: pointer;
 }
 
@@ -160,6 +161,27 @@ li.ant-menu-submenu.ant-menu-submenu-inline.ant-menu-submenu-open .ant-menu.ant-
   nav.header-menu-desktop, .desktop-login-search {
     display: none;
   }
+
+  .footer-menu-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .footer-menu-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-menu-mobile {
+    display: none;
+  }
+
+  .footer-menu-desktop {
+    display: block;
+  }
 }
 
 .header-menu-mobile-toggle {
@@ -257,9 +279,31 @@ ul.ant-menu-sub li.ant-menu-item .ant-menu-title-content a {
 ul.ant-menu-sub li.ant-menu-item {
   height: 20px;
   line-height: 1;
-  padding-left: 20px !important;
+  /* padding-left: 20px !important; */
 }
 
 .ant-menu-inline.ant-menu-root .ant-menu-item>.ant-menu-title-content {
   overflow: visible !important;
+}
+
+.ant-dropdown {
+  position: initial !important;
+}
+
+.ant-collapse .ant-collapse-content {
+  background: transparent !important;
+}
+
+.ant-collapse .ant-collapse-content>.ant-collapse-content-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-collapse {
+  width: 100%;
+}
+
+.ant-collapse-header {
+  display: flex;
+  flex-direction: row-reverse;
 }

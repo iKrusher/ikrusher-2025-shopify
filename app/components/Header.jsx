@@ -126,7 +126,7 @@ function HeaderCtas({isLoggedIn, cart, viewport}) {
         <LogIn />
         <SearchToggle />
         {/* <CartToggle cart={cart} /> */}
-        {Wishlist}
+        <Wishlist />
       </div>
     </nav>
   );
