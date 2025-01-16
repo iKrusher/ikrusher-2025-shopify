@@ -221,8 +221,9 @@ button.reset:hover:not(:has(> *)) {
 .footer-menu {
   align-items: center;
   display: flex;
-  grid-gap: 1rem;
+  /* grid-gap: 1rem; */
   padding: 1rem 0;
+  flex-direction: column;
 }
 
 .footer-menu a {
@@ -231,6 +232,7 @@ button.reset:hover:not(:has(> *)) {
 
 .footer-menu span.ant-collapse-header-text a, .footer-menu span.ant-collapse-header-text a:hover {
   font-weight: 600;
+  font-size: 22px;
 }
 
 .footer-menu .ant-collapse>.ant-collapse-item>.ant-collapse-header {

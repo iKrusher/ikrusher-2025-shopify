@@ -307,3 +307,112 @@ ul.ant-menu-sub li.ant-menu-item {
   display: flex;
   flex-direction: row-reverse;
 }
+
+.location-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 20px 20px 20px;
+  row-gap: 20px;
+}
+
+.location-address {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.footer-menu h4 {
+  color: var(--color-light);
+  font-weight: 600;
+  font-size: 22px;
+  margin: 0;
+}
+
+.footer-menu p {
+  color: var(--color-light);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.75;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.location-group p img {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  height: 20px;
+}
+
+.location-address p:nth-child(2) img {
+  padding: 0 3px;
+}
+
+.subscribe-group {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 2px solid var(--color-light);
+}
+
+.subscribe-group form {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.subscribe-group form input[name='email'] {
+  background: var(--color-light);
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  line-height: 1.5;
+  height: 40px;
+  width: 65%;
+  outline: none;
+  box-shadow: 6px 1px 18.9px 4px rgba(0, 0, 0, 0.25) inset;
+}
+
+.subscribe-group form button {
+  background: var(--theme-color);
+  line-height: 1.5;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  color: var(--color-light);
+  font-weight: 600;
+  margin-left: -15px;
+  height: 42px;
+  width: calc(35% + 15px);
+}
+
+.social-payment-group {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  padding: 20px 20px 0 20px;
+  width: 100%;
+  align-items: center;
+}
+
+.social-group, .payment-group {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.footer-copyright {
+  color: var(--color-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  font-weight: 300;
+}

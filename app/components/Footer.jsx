@@ -1,7 +1,9 @@
 import {Suspense} from 'react';
 import {Await, NavLink} from '@remix-run/react';
 import DropdownMenuList from './DropdownMenuList';
-// import FooterLocations from './FooterLocations';
+import FooterLocations from './FooterLocations';
+import FooterSubscribe from './FooterSubscribe';
+import FooterSocialPayment from './FooterSocialPayment';
 
 /**
  * @param {FooterProps}
@@ -36,7 +38,7 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
 function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
   return (
     <nav className="footer-menu" role="navigation">
-      {/* <FooterLocations /> */}
+      <FooterLocations />
       <div className="footer-menu-mobile">
         <DropdownMenuList
           menu={menu.items}
@@ -77,6 +79,8 @@ function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
           );
         })}
       </div>
+      <FooterSubscribe />
+      <FooterSocialPayment />
     </nav>
   );
 }
